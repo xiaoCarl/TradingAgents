@@ -19,4 +19,14 @@ DEFAULT_CONFIG = {
     "max_recur_limit": 100,
     # Tool settings
     "online_tools": True,
+    
+    # A股数据配置
+    "astock": {
+        "tushare_token": os.getenv("TUSHARE_TOKEN", ""),
+        "prefer_tushare": True,
+        "cache_enabled": True,
+        "cache_timeout": 3600,  # 秒
+        "max_retries": 3,
+        "retry_delay": 1,  # 秒
+    },
 }
