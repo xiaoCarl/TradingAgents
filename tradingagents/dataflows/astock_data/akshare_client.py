@@ -170,14 +170,16 @@ class AkShareClient:
             raise ValueError(f"无效的股票代码: {symbol}")
         
         stock_code, market = std_code.split('.')
-        
+        print("symbol:{symbol}")
+        print(ak.stock_zh_a_spot())
+
         try:
             # 使用AkShare获取股票信息
             stock_zh_a_spot_df = ak.stock_zh_a_spot()
             
             if stock_zh_a_spot_df.empty:
                 return {}
-            
+            print("df:{stock_zh_a_spot_df}")
             # 查找对应股票
             symbol_key = f"{market.lower()}{stock_code}"
             stock_info = stock_zh_a_spot_df[stock_zh_a_spot_df['代码'] == symbol_key]
@@ -193,6 +195,7 @@ class AkShareClient:
             stock_individual_info_em_df = ak.stock_individual_info_em(symbol=stock_code)
             
             info = {}
+            print(info)
             if not stock_individual_info_em_df.empty:
                 info_dict = stock_individual_info_em_df.set_index('item')['value'].to_dict()
                 info = {
